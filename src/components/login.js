@@ -4,6 +4,7 @@ import { useAuth } from '../Context/authContext'
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from 'react-icons/fa';
+import { FcGoogle } from "react-icons/fc";
 export default function Example() {
     const [user, setUser] = useState({
       email: "",
@@ -140,9 +141,9 @@ export default function Example() {
 
           <button
         onClick={handleGoogleSignin}
-        className=" bi bi-google bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
+        className="  bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-2 w-full"
       >
-        Google login 
+       <FcGoogle className='mx-auto w-auto' style={{ fontSize: '30px'}}/>
       </button>
         </div>
 
