@@ -1,44 +1,47 @@
+import componenteNavVar from "../Components/navVar";
+import componenteCampo from "../Components/camposInfo";
+
 export default function adminParqueadero() {
 	return (
-		<div className="App">
+		<div className="App bg-white">
 
+
+			{componenteNavVar('Inicio', 'Administración Parqueadero', 'Cerrar sesión')}
+			<div class="max-w-4xl mx-auto bg-white p-16">
+			{componenteCampo()}
+				</div>
 			<div class="max-w-2xl mx-auto bg-white p-16">
-
+				
 				<form>
 					<div class="grid gap-6 mb-6 lg:grid-cols-2">
 						<div>
-							<label for="first_name" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Nombre del administrador</label>
-							<input type="text" id="nombreAdministrador" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir nombre" required/>
+							<label for="phone" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Saldo disponible</label>
+							<input type="tel" id="horaInicioSesion" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir saldo" required />
 						</div>
+
 						<div>
-							<label for="last_name" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Tipo de usuario</label>
-							<input type="text" id="tipoUsuario" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir tipo" required/>
+							<br />
+							<button type="button" class="border text-lg border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-3 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+								Acreditar saldo
+							</button>
 						</div>
-						<div>
-							
+						<div class="mb-6">
+							<label for="email" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Plazas libres</label>
+							<input type="email" id="plazasLibres" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intruducir # plazas" required />
 						</div>
-						<div>
-							<label for="phone" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Hora de inicio Sesión</label>
-							<input type="tel" id="horaInicioSesion" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir hora" required/>
-						    
-						</div>
-					</div>
-					<div class="mb-6">
-						<label for="email" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Plazas libres</label>
-						<input type="email" id="plazasLibres" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intruducir # plazas" required/>
-					</div>
-					<div class="mb-6">
+						<div class="mb-6">
 						<label for="password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Plazas Ocupadas</label>
-						<input type="password" id="plazasOcupadas" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intruducir # plazas" required/>
+						<input type="password" id="plazasOcupadas" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intruducir # plazas" required />
 					</div>
 					<div class="mb-6">
 						<label for="confirm_password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Solicitudes de reserva/espera</label>
-						<input type="password" id="solicitudesReserva" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir solicitudes" required/>
+						<input type="password" id="solicitudesReserva" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir solicitudes" required />
 					</div>
 					<div class="mb-6">
 						<label for="confirm_password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Ingresos desde inicio de sesión</label>
-						<input type="password" id="ingresosDesdeInicio" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intruducir # ingresos" required/>
-					</div>					
+						<input type="password" id="ingresosDesdeInicio" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intruducir # ingresos" required />
+					</div>
+					</div>
 				</form>
 			</div>
 
