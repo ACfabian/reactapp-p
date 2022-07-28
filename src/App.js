@@ -16,8 +16,9 @@ import CierreCaja from "./components/cierreCaja";
 import AdministracionTotal from "./components/administracionTotal";
 import AcreditacionSaldo from "./components/acreditacionSaldo";
 import SolicitudSaldo from "./components/solicitudSaldo";
+import { Formregistro } from "./components/formregistro";
 import EditarParqueadero from "./components/editarParqueadero";
-
+import RegistrarParqueadero from "./pages/registroParqueadero";
 export default function App() {
   return (
     <AuthProvider>
@@ -36,7 +37,9 @@ export default function App() {
         <Route path="/administracionTotal" element={<AdministracionTotal />} />
         <Route path="/acreditacionSaldo" element={<AcreditacionSaldo />} />
         <Route path="/solicitudSaldo" element={<SolicitudSaldo />} />
-        <Route path="/editarParqueadero" element={<EditarParqueadero />} />    
+        <Route path="/editarParqueadero" element={<EditarParqueadero />} />  
+        <Route path="/termregistro" element={<Formregistro />} />  
+        <Route path="/newparqueadero" element={<RegistrarParqueadero />} /> 
       </Routes>
     </AuthProvider>
   );
