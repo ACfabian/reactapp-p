@@ -13,6 +13,7 @@ export default function Inicial() {
   return (
     <div className='w-full max-w-xs m-auto text-black'>
       <h1 className='text-xl block text-indigo-600 xl:inline'> Welcome {user.email}</h1><br></br>
+      <h1 className='text-xl block text-indigo-600 xl:inline'> Welcome {user.uid}</h1><br></br>
 
       <button 
       className='group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'

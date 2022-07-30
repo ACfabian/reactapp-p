@@ -19,10 +19,11 @@ import AcreditacionSaldo from "./pages/acreditacionSaldo";
 import SolicitudSaldo from "./pages/solicitudSaldo";
 import EditarParqueadero from "./pages/editarParqueadero";
 import PlazaReservada from "./pages/plazaReservada";
-import RegistroParqueadero from "./pages/registroParqueadero";
+import RegistrarParqueadero from "./pages/registroParqueadero";
 import RegistroEmpleado from "./pages/registroEmpleado";
 import AdminPropietario from "./pages/adminPropietario";
 import Recargar from "./pages/recargar";
+import { Formregistro } from "./pages/formregistro";
 import RegistroUsuario from "./pages/registroUsuario";
 
 //<HashRouter></HashRouter>
@@ -46,11 +47,12 @@ export default function App() {
           <Route path="/solicitudSaldo" element={<SolicitudSaldo />} />
           <Route path="/editarParqueadero" element={<EditarParqueadero />} />
           <Route path="/plazaReservada" element={<PlazaReservada />} />
-          <Route path="/registroParqueadero" element={<RegistroParqueadero />} />
           <Route path="/registroEmpleado" element={<RegistroEmpleado />} />
           <Route path="/adminPropietario" element={<AdminPropietario />} />
           <Route path="/recargar" element={<Recargar />} />
           <Route path="/registroUsuario" element={<RegistroUsuario />} />
+          <Route path="/termregistro" element={<Formregistro />} />  
+          <Route path="/newparqueadero" element={<RegistrarParqueadero />} /> 
         </Routes>
       </AuthProvider>
 
