@@ -1,20 +1,19 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+/**import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 
 mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
+ **/
+
+import React, { Component } from 'react';
+//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import ReactMapGL, { Marker } from 'react-map-gl'
 
 
-const navigation = [
-    { name: 'Empieza ya', href: '#' },
-    { name: 'Novedades', href: '#' },
-    { name: 'Contacto', href: '#' },
-]
-
-export default function Example() {
+/**export default function Example() {
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lng, setLng] = useState(-70.9);
@@ -38,17 +37,82 @@ export default function Example() {
             setLat(map.current.getCenter().lat.toFixed(4));
             setZoom(map.current.getZoom().toFixed(2));
         });
-    });
+    });**/
+    class Mapa3 extends Component{
 
+    
+   
+        state = {
+            viewport: {
+              width: "100vw",
+              height: '400px',
+              latitude: 42.430472,
+              longitude: -123.334102,
+              zoom: 10
+            }
+          };
+    
+        componentDidMount() { 
+            this.setUserLocation();
+        } 
+    
+        methodOne(someValue) {
+            /* ... */
+            this.setState({ latitude : someValue})
+        }
+        methodOne(someValue) {
+            /* ... */
+            this.setState({ longitude: someValue})
+        }
+        
+        
+      
+        setUserLocation = () => {
+            navigator.geolocation.getCurrentPosition(position => {
+                let newViewport = {
+                    height: "100vh",
+                    width: "100vw",
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    zoom: 14
+                }
+                this.setState({
+                    viewport: newViewport
+    
+                })
+            })
+            
+        }
+    
+       /**  constructor(){
+            this.state = {
+                latituded: latitude,
+                longituded: longitude,
+            };
+        }**/
+    
+    
+    
+        render(){
+            const longitud = this.state.viewport.longitude;
+            const latitud = this.state.viewport.latitude;
+            console.log(this.state.viewport.longitude);
     return (
 
-        <div class=" flex items-center justify-center  bg-blue-400"  style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
+        <div className=" flex items-center justify-center  bg-blue-400"  style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
             <div className=" w-full bg-gray-100  shadow ">
-                <section class="bg-dark  space-y-3 w-full  rounded-3xl shadow-lg ">
-                <div className="sidebar">
-                            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+                <section className="bg-dark  space-y-3 w-full  rounded-3xl shadow-lg ">                
+                <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
+                    <Marker
+                        longitude={(longitud)}
+                        latitude={(latitud)}>
+                        <div className="marker">
+                            <span><b>1</b></span>
                         </div>
-                        <div ref={mapContainer} className="map-container  " style={{ height: '400px' }} />
+                    </Marker>
+                   
+                    
+                    </ReactMapGL>
                    
                     
                 </section>
@@ -69,3 +133,5 @@ export default function Example() {
 
     )
 }
+}
+export default Mapa3;

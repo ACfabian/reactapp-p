@@ -1,11 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+/**import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import React, { useRef, useEffect, useState } from 'react';
 import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+**/
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
+import React, { Component } from 'react';
+//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import ReactMapGL, { Marker } from 'react-map-gl'
+
+//mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
 
 
 const navigation = [
@@ -14,12 +19,28 @@ const navigation = [
     { name: 'Contacto', href: '#' },
 ]
 
-export default function Example() {
+
+
+/**export default function Example() {
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lng, setLng] = useState(-70.9);
     const [lat, setLat] = useState(42.35);
     const [zoom, setZoom] = useState(9);
+    //const [center, setCenter] = useState<LngLatLike>([-70.9,42.35]);
+
+    
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+           ({coords}) => {
+                setLng( coords.longitude)
+                setLat(coords.latitude);
+           },
+           () => {
+            console.error("No se pudo acceder a la ubicación");
+           }
+        );
+      }, []);
 
     useEffect(() => {
         if (map.current) return; // initialize map only once
@@ -29,17 +50,58 @@ export default function Example() {
             center: [lng, lat],
             zoom: zoom
         });
-    });
+    });**/
+class Mapa2 extends Component{
 
-    useEffect(() => {
-        if (!map.current) return; // wait for map to initialize
-        map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
-        });
-    });
+    
+   
+        state = {
+            viewport: {
+              width: "100vw",
+              height: '400px',
+              latitude: 42.430472,
+              longitude: -123.334102,
+              zoom: 10
+            }
+          };
+    
+        componentDidMount() { 
+            this.setUserLocation();
+        } 
+    
+      
+        setUserLocation = () => {
+            navigator.geolocation.getCurrentPosition(position => {
+                let newViewport = {
+                    height: "100vh",
+                    width: "100vw",
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    zoom: 14
+                }
+                this.setState({
+                    viewport: newViewport
+    
+                })
+            })
+            
+        }
+    
+       /**  constructor(){
+            this.state = {
+                latituded: latitude,
+                longituded: longitude,
+            };
+        }**/
+    
+    
+    
+        render(){
+            const longitud = this.state.viewport.longitude;
+            const latitud = this.state.viewport.latitude;
+            console.log(this.state.viewport.longitude);
 
+   
     return (
         <div class="flex items-center justify-center  bg-blue-400" style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
 
@@ -47,10 +109,18 @@ export default function Example() {
             <div class=" w-full bg-blue-400" >
                 <div className="w-full bg-gray-100 rounded-lg shadow ">
                     <section className="bg-dark w-full rounded-3xl shadow-lg border flex flex-col">
-                        <div className="sidebar">
-                            Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
+                        
+                    <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
+                    <Marker
+                        longitude={(longitud)}
+                        latitude={(latitud)}>
+                        <div className="marker">
+                            <span><b>1</b></span>
                         </div>
-                        <div ref={mapContainer} className="map-container  " style={{ height: '400px' }} />
+                    </Marker>
+                   
+                    
+                    </ReactMapGL>
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
                             <table class="text-sm text-left text-white bg-blue-400 text-white w-full " >
                                 <tbody>
@@ -59,7 +129,7 @@ export default function Example() {
                                         <td class="w-1/2 p-4">
                                             <div class="flex items-center">
 
-                                                VEHICULOS A ESTACIONAR
+                                                VEHICULOS A ESTACIONAR 
                                             </div>
                                         </td>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -123,3 +193,5 @@ export default function Example() {
         </div>
     )
 }
+}
+export default Mapa2;
