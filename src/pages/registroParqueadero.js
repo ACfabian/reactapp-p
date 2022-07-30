@@ -1,4 +1,4 @@
-import componenteNavVar from "../components/navVar";
+import componenteNavVar from "../Components/navVar";
 import {React, useState} from "react";
 import { AgregarP } from '../Context/firestoreController'
 import { useNavigate } from "react-router-dom";

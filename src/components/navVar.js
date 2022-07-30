@@ -2,7 +2,7 @@
 export function navVar(izquierda, centro, derecha){
     return(
         <nav
-						class="z-0 relative bg-gray-700"
+				class="z-0 relative bg-gray-700"
 				x-data="{open:false,menu:false, lokasi:false}">
 				<div class="relative z-10 dark:placeholder-gray-400 shadow">
 					<div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">

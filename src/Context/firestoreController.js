@@ -1,6 +1,6 @@
 import { firestore } from "../firebaseconf";
 import { doc,addDoc, collection, setDoc } from "firebase/firestore";
-import {useAuth} from '../Context/authContext'
+import {useAuth} from './authContext'
 
 export const Agregar = async (nombre,cedula,telefono,tipo, Uid) => {
   // Add a second document with a generated ID.
