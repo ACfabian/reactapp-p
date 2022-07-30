@@ -1,6 +1,10 @@
-export default function administracionTotal() {
+import componenteNavVar from "../Components/navVar";
+
+export default function acreditacionSaldo() {
 	return (
-		<div className="App">
+		<div className="App bg-white">
+
+			{componenteNavVar('Inicio', 'Solicitudes de Saldo', 'Cerrar sesión')}	
 
 			<div class="max-w-2xl mx-auto bg-white p-16">
 
@@ -24,8 +28,8 @@ export default function administracionTotal() {
 						</div>
 					</div>
 					<div class="mb-6">
-						<label for="email" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Parqueaderos totales</label>
-						<input type="email" id="plazasLibres" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Intrucir # de parqueaderos" required />
+						<label for="email" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Solicitudes totales</label>
+						<input type="email" id="plazasLibres" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir # solicitudes" required />
 					</div>
 					<div class="mb-6 items-center">
 						<label for="password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Seleccionar ciudad</label>
@@ -37,10 +41,10 @@ export default function administracionTotal() {
 						</select>
 					</div>
 					<div class="mb-6">
-						<label for="confirm_password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Buscar Nombre/Propietario</label>
+						<label for="confirm_password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-gray-1000">Buscar Usuario</label>
 						<div class="grid gap-6 mb-6 lg:grid-cols-2">
-							<input type="text" id="tipoUsuario" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre propietario" required />
-							<input type="text" id="tipoUsuario" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Nombre parqueadero" required />
+							<input type="text" id="tipoUsuario" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir nombre" required />
+							<input type="text" id="tipoUsuario" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Introducir cédula" required />
 						</div>
 					</div>
 				</form>
@@ -57,25 +61,19 @@ export default function administracionTotal() {
 						<thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 							<tr>
 								<th scope="col" class="px-6 py-3">
-									NombreP
+									Nombre
 								</th>
 								<th scope="col" class="px-6 py-3">
-									Ubicacion
+									Cédula
 								</th>
 								<th scope="col" class="px-6 py-3">
-									Fecha Registro
+									Correo
 								</th>
 								<th scope="col" class="px-6 py-3">
-									Plazas
+									Saldo
 								</th>
 								<th scope="col" class="px-6 py-3">
-									Precio
-								</th>
-								<th scope="col" class="px-6 py-3">
-									Propietario
-								</th>
-								<th scope="col" class="px-6 py-3">
-									Acción (Botón)
+									Comprobante
 								</th>
 							</tr>
 						</thead>
@@ -83,76 +81,61 @@ export default function administracionTotal() {
 							<tr
 								class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 								<td class="w-4 p-4">
-									PARK A
+									Nombre 1
 								</td>
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-									Calle #1
+									1234567893
 								</th>
 								<td class="px-6 py-4">
-									07/05/2022
+									nombre1@gmail.com
 								</td>
 								<td class="px-6 py-4">
-									20
+									$ 0
 								</td>
 								<td class="px-6 py-4">
-									$ 1.00
-								</td>
-								<td class="px-6 py-4">
-									nombre1 
-								</td>
-								<td class="px-6 py-4 text-right">
-									<a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+									IMAGEN
 								</td>
 							</tr>
 							<tr
 								class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 								<td class="w-4 p-4">
-									PARK B
+									Nombre 2
 								</td>
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-									Calle #2
+									1234567893
 								</th>
 								<td class="px-6 py-4">
-									07/05/2022
+									nombre2@gmail.com
 								</td>
 								<td class="px-6 py-4">
-									30
+									$ 0
 								</td>
 								<td class="px-6 py-4">
-									$ 1.00
-								</td>
-								<td class="px-6 py-4">
-									nombre2
-								</td>
-								<td class="px-6 py-4 text-right">
-									<a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+									IMAGEN
 								</td>
 							</tr>
 							<tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-							<td class="w-4 p-4">
-									PARK C
+								<td class="w-4 p-4">
+									Nombre 3
 								</td>
 								<th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
-									Calle #3
+									1234567893
 								</th>
 								<td class="px-6 py-4">
-									07/05/2022
+									nombre3@gmail.com
 								</td>
 								<td class="px-6 py-4">
-									15
+									$ 0
 								</td>
 								<td class="px-6 py-4">
-									$ 1.00
-								</td>
-								<td class="px-6 py-4">
-									nombre3
-								</td>
-								<td class="px-6 py-4 text-right">
-									<a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a>
+									IMAGEN
 								</td>
 							</tr>
 						</tbody>
 					</table>
+					<button type="button" class="border text-lg border-indigo-500 bg-indigo-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-indigo-600 focus:outline-none focus:shadow-outline">
+						Acreditar
+					</button>
 				</div>
 
 				<script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>

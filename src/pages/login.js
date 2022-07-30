@@ -6,48 +6,48 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc";
 export default function Example() {
-    const [user, setUser] = useState({
-      email: "",
-      password: "",
-    });
-    const { login, loginWithGoogle, resetPassword } = useAuth();
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      setError("");
-      try {
-        await login(user.email, user.password);
-        navigate("/inicio");
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-  
-    const handleChange = ({ target: { value, name } }) =>
-      setUser({ ...user, [name]: value });
-  
-    const handleGoogleSignin = async () => {
-      try {
-        await loginWithGoogle();
-        navigate("/inicio");
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-  
-    const handleResetPassword = async (e) => {
-      e.preventDefault();
-      if (!user.email) return setError("Write an email to reset password");
-      try {
-        await resetPassword(user.email);
-        setError('We sent you an email. Check your inbox')
-      } catch (error) {
-        setError(error.message);
-      }
-    };
-    return (
-      
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const { login, loginWithGoogle, resetPassword } = useAuth();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await login(user.email, user.password);
+      navigate("/inicio");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleChange = ({ target: { value, name } }) =>
+    setUser({ ...user, [name]: value });
+
+  const handleGoogleSignin = async () => {
+    try {
+      await loginWithGoogle();
+      navigate("/inicio");
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    if (!user.email) return setError("Write an email to reset password");
+    try {
+      await resetPassword(user.email);
+      setError('We sent you an email. Check your inbox')
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  return (
+
     <>
       {/*
         This example requires updating your template:
@@ -78,7 +78,7 @@ export default function Example() {
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
                 <label htmlFor="email-address" className="sr-only">
-                email-address
+                  email-address
                 </label>
                 <input
                   id="email"
@@ -122,7 +122,7 @@ export default function Example() {
                 </label>
               </div>
 
-            <div className="text-sm">
+              <div className="text-sm">
                 <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Olvidaste la contraseña?
                 </a>
@@ -140,11 +140,10 @@ export default function Example() {
           </form>
 
           <button
-        onClick={handleGoogleSignin}
-        className=" bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-2 w-full"
-      >
-        <FcGoogle className='mx-auto w-auto' style={{ fontSize: '30px'}}/>
-      </button>
+            onClick={handleGoogleSignin}
+            className=" bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-2 w-full">
+            <FcGoogle className='mx-auto w-auto' style={{ fontSize: '30px' }} />
+          </button>
         </div>
 
       </div>

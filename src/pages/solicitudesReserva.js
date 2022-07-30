@@ -1,18 +1,20 @@
+import componenteNavVar from "../Components/navVar";
+
 export default function solicitudesReserva() {
 	return (
-		<div className="App">
+		<div className="App bg-white">
 
-			<div class="max-w-4xl mx-auto">
+			{componenteNavVar('Inicio', 'Solicitudes de Reserva', 'Cerrar sesión')}
+
+			<div class="max-w-4xl mx-auto p-4">
 
 				<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-					<div class="p-4">
-
-					</div>
+					
 					<table class="w-full text-base text-left text-gray-500 dark:text-gray-400">
 						<thead class="text-base text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
 								<th colSpan={7} scope="col" class="px-6 py-3" align="center">
-									SOLICITUDES DE RESERVA
+									SOLICITUDES
 								</th>
 								
 							</tr>
@@ -41,7 +43,7 @@ export default function solicitudesReserva() {
 							</tr>
 						</thead>
 						<tbody>
-							<tr
+							<tr contentEditable
 								class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
 								<td class="w-4 p-4">
 									#1
@@ -118,7 +120,6 @@ export default function solicitudesReserva() {
 
 				<script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
 			</div>
-
 		</div >
 	);
 }
