@@ -1,5 +1,6 @@
 import React from "react";
-import { Routes, Route} from "react-router-dom";
+import ReactDOM from "react-dom/client";
+import {Routes, Route } from "react-router-dom";
 //import { Routes, Route, HashRouter } from "react-router-dom";
 import Info from "./pages/Informativa";
 import Singin from "./pages/login";
@@ -29,7 +30,7 @@ import RegistroUsuario from "./pages/registroUsuario";
 //<HashRouter></HashRouter>
 export default function App() {
   return (
-      <AuthProvider>
+    <AuthProvider>
         <Routes>
           <Route path="/" element={<Info />} />
           <Route path="/login" element={<Singin />} />
@@ -51,10 +52,11 @@ export default function App() {
           <Route path="/adminPropietario" element={<AdminPropietario />} />
           <Route path="/recargar" element={<Recargar />} />
           <Route path="/registroUsuario" element={<RegistroUsuario />} />
-          <Route path="/termregistro" element={<Formregistro />} />  
-          <Route path="/newparqueadero" element={<RegistrarParqueadero />} /> 
+          <Route path="/termregistro" element={<Formregistro />} />
+          <Route path="/newparqueadero" element={<RegistrarParqueadero />} />
         </Routes>
-      </AuthProvider>
+    </AuthProvider>
 
   );
 }
+

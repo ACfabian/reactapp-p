@@ -4,7 +4,7 @@ export default function solicitudesReserva() {
 	return (
 		<div className="App bg-white">
 
-			{componenteNavVar('Inicio', 'Solicitudes de Reserva', 'Cerrar sesión')}
+{componenteNavVar('Inicio', 'Solicitudes de Reserva', 'Cerrar sesión')}
 
 			<div class="max-w-4xl mx-auto p-4">
 

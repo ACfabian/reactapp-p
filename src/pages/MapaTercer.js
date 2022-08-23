@@ -11,6 +11,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBka
 import React, { Component } from 'react';
 //import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import ReactMapGL, { Marker } from 'react-map-gl'
+import componenteNavVar from "../Components/navVar";
 
 
 /**export default function Example() {
@@ -99,7 +100,8 @@ import ReactMapGL, { Marker } from 'react-map-gl'
             console.log(this.state.viewport.longitude);
     return (
 
-        <div className=" flex items-center justify-center  bg-blue-400"  style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
+        <div className="items-center justify-center  bg-blue-400"  style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
+            {componenteNavVar('Inicio', 'MAPA SECUNDARIO', 'Cerrar sesión')}
             <div className=" w-full bg-gray-100  shadow ">
                 <section className="bg-dark  space-y-3 w-full  rounded-3xl shadow-lg ">                
                 <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >

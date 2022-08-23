@@ -9,7 +9,7 @@ import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-load
 import React, { Component } from 'react';
 //import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
 import ReactMapGL, { Marker } from 'react-map-gl'
-
+import componenteNavVar from "../Components/navVar";
 //mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
 
 
@@ -103,8 +103,8 @@ class Mapa2 extends Component{
 
    
     return (
-        <div class="flex items-center justify-center  bg-blue-400" style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
-
+        <div class="items-center justify-center  bg-blue-400" style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
+{componenteNavVar('Inicio', 'MAPA SECUNDARIO', 'Cerrar sesión')}
 
             <div class=" w-full bg-blue-400" >
                 <div className="w-full bg-gray-100 rounded-lg shadow ">

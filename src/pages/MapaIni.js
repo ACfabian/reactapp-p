@@ -2,7 +2,8 @@
 
 import React, { Component } from 'react';
 //import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import ReactMapGL, { Marker } from 'react-map-gl'
+import ReactMapGL, { Marker } from 'react-map-gl';
+import componenteNavVar from "../Components/navVar";
 
 
 
@@ -70,12 +71,13 @@ class Mapa1 extends Component{
     }**/
 
 
-
+    
     render(){
         const longitud = this.state.viewport.longitude;
         const latitud = this.state.viewport.latitude;
         console.log(this.state.viewport.longitude);
         console.log(this.state.viewport.latitude);
+        
         return (
        /**  {<Marker 
               longitude = {}
@@ -83,11 +85,10 @@ class Mapa1 extends Component{
               <div className="Mi ubicacion"><span></span></div>
            </Marker>};
         </div> **/
-
-
-
-        <div className="flex items-center justify-center py-1  bg-blue-400"  style={{height: '100%' ,width: '100%', position:'absolute', top: '0', left: '0' }}>
-            <div className="w-full p-2 m-2 bg-gray-100 rounded-lg shadow ">
+//<div className="flex items-center justify-center py-1  bg-blue-400"  style={{height: '100%' ,width: '100%', position:'absolute', top: '0', left: '0' }}>
+        <div className="items-center justify-center  bg-blue-400"  style={{height: '100%' ,width: '100%', position:'absolute', top: '0', left: '0' }}>
+            {componenteNavVar('Inicio', 'MAPA', 'Cerrar sesión')}
+            <div className="p-2 m-2 bg-gray-100 rounded-lg shadow ">
                 <section class="bg-dark w-full space-y-3 w-full py-4 rounded-3xl shadow-lg border flex flex-col">
 
                     <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
@@ -193,7 +194,7 @@ class Mapa1 extends Component{
             </div>
 
         </div>
-
+        
 
 
 
