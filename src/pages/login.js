@@ -18,7 +18,7 @@ export default function Example() {
     setError("");
     try {
       await login(user.email, user.password);
-      navigate("/inicio");
+      navigate("/Mapa");
     } catch (error) {
       setError(error.message);
     }
@@ -30,7 +30,7 @@ export default function Example() {
   const handleGoogleSignin = async () => {
     try {
       await loginWithGoogle();
-      navigate("/inicio");
+      navigate("/Mapa");
     } catch (error) {
       setError(error.message);
     }

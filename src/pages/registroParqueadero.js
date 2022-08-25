@@ -20,7 +20,7 @@ export default function AcreditacionSaldo() {
 	
 	const agg  = async (e)=> {
 	  e.preventDefault();
-	  navigate("/inicio");
+	  navigate("/Mapa");
 	  try {
 		 await AgregarP(parq1.NombreP,parq1.Hinicio,parq1.Hcierre,parq1.Telefono,parq1.Plazas,parq1.PrecioH,parq1.Ubicacion,user.uid);
 	  } catch (error) {

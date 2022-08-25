@@ -16,7 +16,13 @@ export function Formregistro() {
   
   const agg  = async (e)=> {
     e.preventDefault();
-    navigate("/inicio");
+
+    if(user1.tipo=="Propietario"){
+      navigate("/newparqueadero");
+    }else{
+      navigate("/Mapa");
+    }
+    
     try {
        await Agregar(user1.nombre,user1.cedula,user1.telefono,user1.tipo,user.uid);
     } catch (error) {
