@@ -101,7 +101,7 @@ import componenteNavVar from "../Components/navVar";
     return (
 
         <div className="items-center justify-center  bg-blue-400"  style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
-            {componenteNavVar('Inicio', 'MAPA SECUNDARIO', 'Cerrar sesión')}
+            {componenteNavVar('Inicio', 'MAPA PRUEBA', 'Cerrar sesión')}
             <div className=" w-full bg-gray-100  shadow ">
                 <section className="bg-dark  space-y-3 w-full  rounded-3xl shadow-lg ">                
                 <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
