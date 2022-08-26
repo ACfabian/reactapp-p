@@ -5,8 +5,6 @@ import { useAuth } from '../Context/authContext'
 export function Formregistro() {
   const navigate = useNavigate();
   const { user  } = useAuth();
-
-
   const [user1, setUser] = useState({
     nombre: "",
     cedula: "",
