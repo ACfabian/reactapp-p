@@ -1,139 +1,84 @@
-/* This example requires Tailwind CSS v2.0+ */
-/**import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import React, { useState, useEffect, useRef } from 'react';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
- **/
+// openlayers
+import Map from 'ol/Map'
+import View from 'ol/View'
+import TileLayer from 'ol/layer/Tile'
+import VectorLayer from 'ol/layer/Vector'
+import VectorSource from 'ol/source/Vector'
+import OSM from 'ol/source/OSM'
+import XYZ from 'ol/source/XYZ'
+import { transform } from 'ol/proj'
+import { toStringXY } from 'ol/coordinate';
 
-import React, { Component } from 'react';
-//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import ReactMapGL, { Marker } from 'react-map-gl'
 import componenteNavVar from "../Components/navVar";
 
+function MapaTercer() {
+    // set intial state
+    const [map, setMap] = useState()
+    const [featuresLayer, setFeaturesLayer] = useState()
+    const [selectedCoord, setSelectedCoord] = useState()
 
-/**export default function Example() {
-    const mapContainer = useRef(null);
-    const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
+    // pull refs
+    const mapElement = useRef()
 
+    // create state ref that can be accessed in OpenLayers onclick callback function
+    //  https://stackoverflow.com/a/60643670
+    const mapRef = useRef()
+    mapRef.current = map
+
+    // initialize map on first render - logic formerly put into componentDidMount
     useEffect(() => {
-        if (map.current) return; // initialize map only once
-        map.current = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [lng, lat],
-            zoom: zoom
-        });
-    });
 
-    useEffect(() => {
-        if (!map.current) return; // wait for map to initialize
-        map.current.on('move', () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
-        });
-    });**/
-    class Mapa3 extends Component{
+        // create and add vector source layer
+        const initalFeaturesLayer = new VectorLayer({
+            source: new VectorSource()
+        })
 
-    
-   
-        state = {
-            viewport: {
-              width: "100vw",
-              height: '400px',
-              latitude: 42.430472,
-              longitude: -123.334102,
-              zoom: 10
-            }
-          };
-    
-        componentDidMount() { 
-            this.setUserLocation();
-        } 
-    
-        methodOne(someValue) {
-            /* ... */
-            this.setState({ latitude : someValue})
-        }
-        methodOne(someValue) {
-            /* ... */
-            this.setState({ longitude: someValue})
-        }
-        
-        
-      
-        setUserLocation = () => {
-            navigator.geolocation.getCurrentPosition(position => {
-                let newViewport = {
-                    height: "100vh",
-                    width: "100vw",
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    zoom: 14
-                }
-                this.setState({
-                    viewport: newViewport
-    
+        // create map
+        const initialMap = new Map({
+            target: mapElement.current,
+            layers: [
+                new TileLayer({
+                    source: new OSM()
                 })
-            })
-            
-        }
-    
-       /**  constructor(){
-            this.state = {
-                latituded: latitude,
-                longituded: longitude,
-            };
-        }**/
-    
-    
-    
-        render(){
-            const longitud = this.state.viewport.longitude;
-            const latitud = this.state.viewport.latitude;
-            console.log(this.state.viewport.longitude);
+            ],
+            view: new View({
+                projection: 'EPSG:3857',
+                center: [0, 0],
+                zoom: 2
+            }),
+            controls: []
+        })
+
+        // save map and vector layer references to state
+        setMap(initialMap)
+        setFeaturesLayer(initalFeaturesLayer)
+
+    }, [])
     return (
 
-        <div className="items-center justify-center  bg-blue-400"  style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
+        <div className="items-center justify-center  bg-blue-400" style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
             {componenteNavVar('Inicio', 'MAPA PRUEBA', 'Cerrar sesión')}
             <div className=" w-full bg-gray-100  shadow ">
-                <section className="bg-dark  space-y-3 w-full  rounded-3xl shadow-lg ">                
-                <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
-                    <Marker
-                        longitude={(longitud)}
-                        latitude={(latitud)}>
-                        <div className="marker">
-                            <span><b>1</b></span>
-                        </div>
-                    </Marker>
-                   
-                    
-                    </ReactMapGL>
-                   
-                    
+                <section className="bg-dark  space-y-3 w-full  rounded-3xl shadow-lg ">
+                    <div ref={mapElement} className="map-container" style={{ height: '600px'}}></div>
                 </section>
                 <div class="container mx-auto">
-                        <div class="mt-4 mb-12 px-4 py-1/2  justify-between bg-blue-500 rounded-md">
-                            <div class="justify-center">
-                                <div class="text-base text-xl text-center  clear-both">Ball possession (%)</div>
-                                <div>
+                    <div class="mt-4 mb-12 px-4 py-1/2  justify-between bg-blue-500 rounded-md">
+                        <div class="justify-center">
+                            <div class="text-base text-xl text-center  clear-both">Ball possession (%)</div>
+                            <div>
 
 
-                                </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-            
+
         </div>
 
     )
 }
-}
-export default Mapa3;
+export default MapaTercer;

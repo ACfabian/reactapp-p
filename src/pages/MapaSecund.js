@@ -1,126 +1,69 @@
-/* This example requires Tailwind CSS v2.0+ */
-/**import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
-import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-**/
+import React, { useState, useEffect, useRef } from 'react';
 
-import React, { Component } from 'react';
-//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import ReactMapGL, { Marker } from 'react-map-gl'
+// openlayers
+import Map from 'ol/Map'
+import View from 'ol/View'
+import TileLayer from 'ol/layer/Tile'
+import VectorLayer from 'ol/layer/Vector'
+import VectorSource from 'ol/source/Vector'
+import OSM from 'ol/source/OSM'
+import XYZ from 'ol/source/XYZ'
+import { transform } from 'ol/proj'
+import { toStringXY } from 'ol/coordinate';
+
 import componenteNavVar from "../Components/navVar";
-//mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
 
+function MapaSecundario() {
+    // set intial state
+    const [map, setMap] = useState()
+    const [featuresLayer, setFeaturesLayer] = useState()
+    const [selectedCoord, setSelectedCoord] = useState()
 
-const navigation = [
-    { name: 'Empieza ya', href: '#' },
-    { name: 'Novedades', href: '#' },
-    { name: 'Contacto', href: '#' },
-]
+    // pull refs
+    const mapElement = useRef()
 
+    // create state ref that can be accessed in OpenLayers onclick callback function
+    //  https://stackoverflow.com/a/60643670
+    const mapRef = useRef()
+    mapRef.current = map
 
-
-/**export default function Example() {
-    const mapContainer = useRef(null);
-    const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
-    const [zoom, setZoom] = useState(9);
-    //const [center, setCenter] = useState<LngLatLike>([-70.9,42.35]);
-
-    
+    // initialize map on first render - logic formerly put into componentDidMount
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-           ({coords}) => {
-                setLng( coords.longitude)
-                setLat(coords.latitude);
-           },
-           () => {
-            console.error("No se pudo acceder a la ubicación");
-           }
-        );
-      }, []);
 
-    useEffect(() => {
-        if (map.current) return; // initialize map only once
-        map.current = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [lng, lat],
-            zoom: zoom
-        });
-    });**/
-class Mapa2 extends Component{
+        // create and add vector source layer
+        const initalFeaturesLayer = new VectorLayer({
+            source: new VectorSource()
+        })
 
-    
-   
-        state = {
-            viewport: {
-              width: "100vw",
-              height: '400px',
-              latitude: 42.430472,
-              longitude: -123.334102,
-              zoom: 10
-            }
-          };
-    
-        componentDidMount() { 
-            this.setUserLocation();
-        } 
-    
-      
-        setUserLocation = () => {
-            navigator.geolocation.getCurrentPosition(position => {
-                let newViewport = {
-                    height: "100vh",
-                    width: "100vw",
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                    zoom: 14
-                }
-                this.setState({
-                    viewport: newViewport
-    
+        // create map
+        const initialMap = new Map({
+            target: mapElement.current,
+            layers: [
+                new TileLayer({
+                    source: new OSM()
                 })
-            })
-            
-        }
-    
-       /**  constructor(){
-            this.state = {
-                latituded: latitude,
-                longituded: longitude,
-            };
-        }**/
-    
-    
-    
-        render(){
-            const longitud = this.state.viewport.longitude;
-            const latitud = this.state.viewport.latitude;
-            console.log(this.state.viewport.longitude);
+            ],
+            view: new View({
+                projection: 'EPSG:3857',
+                center: [0, 0],
+                zoom: 2
+            }),
+            controls: []
+        })
 
-   
+        // save map and vector layer references to state
+        setMap(initialMap)
+        setFeaturesLayer(initalFeaturesLayer)
+
+    }, [])
     return (
         <div class="items-center justify-center  bg-blue-400" style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
-{componenteNavVar('Inicio', 'MAPA SECUNDARIO', 'Cerrar sesión')}
+            {componenteNavVar('Inicio', 'MAPA SECUNDARIO', 'Cerrar sesión')}
 
             <div class=" w-full bg-blue-400" >
                 <div className="w-full bg-gray-100 rounded-lg shadow ">
                     <section className="bg-dark w-full rounded-3xl shadow-lg border flex flex-col">
-                        
-                    <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
-                    <Marker
-                        longitude={(longitud)}
-                        latitude={(latitud)}>
-                        <div className="marker">
-                            <span><b>1</b></span>
-                        </div>
-                    </Marker>
-                   
-                    
-                    </ReactMapGL>
+                        <div ref={mapElement} className="map-container" style={{ height: '400px' }}></div>
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
                             <table class="text-sm text-left text-white bg-blue-400 text-white w-full " >
                                 <tbody>
@@ -129,7 +72,7 @@ class Mapa2 extends Component{
                                         <td class="w-1/2 p-4">
                                             <div class="flex items-center">
 
-                                                VEHICULOS A ESTACIONAR 
+                                                VEHICULOS A ESTACIONAR
                                             </div>
                                         </td>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
@@ -145,7 +88,7 @@ class Mapa2 extends Component{
                                             </div>
                                         </td>
                                         <th scope="row" class="px-6 py-4 font-medium bg-blue-500 text-white dark:text-white whitespace-nowrap">
-                                           <input className="bg-blue-500 border-2 border-b  font-bold " type="text" name="remember" defaultValue="Introducir placa" placeholder="Introducir placa" />
+                                            <input className="bg-blue-500 border-2 border-b  font-bold " type="text" name="remember" defaultValue="Introducir placa" placeholder="Introducir placa" />
                                         </th>
                                     </tr>
                                     <tr class="bg-blue-500 border-b ">
@@ -155,7 +98,7 @@ class Mapa2 extends Component{
                                                 Cedula
                                             </div>
                                         </td>
-                                        <th scope="row" class="px-6 py-4 font-medium   text-white ">                                            
+                                        <th scope="row" class="px-6 py-4 font-medium   text-white ">
                                             <input className="bg-blue-500 border-2 border-b  font-bold " type="text" name="remember" defaultValue="Introducir cedula" placeholder="Introducir placa" />
                                         </th>
                                     </tr>
@@ -193,5 +136,4 @@ class Mapa2 extends Component{
         </div>
     )
 }
-}
-export default Mapa2;
+export default MapaSecundario;
