@@ -1,104 +1,67 @@
-/* This example requires Tailwind CSS v2.0+ */
+import React, { useState, useEffect, useRef } from 'react';
 
-import React, { Component } from 'react';
-//import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
-import ReactMapGL, { Marker } from 'react-map-gl';
+// openlayers
+import Map from 'ol/Map'
+import View from 'ol/View'
+import TileLayer from 'ol/layer/Tile'
+import VectorLayer from 'ol/layer/Vector'
+import VectorSource from 'ol/source/Vector'
+import OSM from 'ol/source/OSM'
+import XYZ from 'ol/source/XYZ'
+import { transform } from 'ol/proj'
+import { toStringXY } from 'ol/coordinate';
+
 import componenteNavVar from "../Components/navVar";
 
+function MapaInicial() {
+    // set intial state
+    const [map, setMap] = useState()
+    const [featuresLayer, setFeaturesLayer] = useState()
+    const [selectedCoord, setSelectedCoord] = useState()
 
+    // pull refs
+    const mapElement = useRef()
 
-//mapboxgl.accessToken = 'pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw';
+    // create state ref that can be accessed in OpenLayers onclick callback function
+    //  https://stackoverflow.com/a/60643670
+    const mapRef = useRef()
+    mapRef.current = map
 
+    // initialize map on first render - logic formerly put into componentDidMount
+    useEffect(() => {
 
-const navigation = [
-    { name: 'Empieza ya', href: '#' },
-    { name: 'Novedades', href: '#' },
-    { name: 'Contacto', href: '#' },
-]
-
-
-
-class Mapa1 extends Component{
-
-    
-   
-    state = {
-        viewport: {
-          width: "100vw",
-          height: '400px',
-          latitude: 42.430472,
-          longitude: -123.334102,
-          zoom: 15
-        }
-      };
-
-    componentDidMount() { 
-        this.setUserLocation();
-    } 
-
-    methodOne(someValue) {
-        /* ... */
-        this.setState({ latitude : someValue})
-    }
-    methodOne(someValue) {
-        /* ... */
-        this.setState({ longitude: someValue})
-    }
-    
-    
-  
-    setUserLocation = () => {
-        navigator.geolocation.getCurrentPosition(position => {
-            let newViewport = {
-                height: "100vh",
-                width: "100vw",
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-                zoom: 12
-            }
-            this.setState({
-                viewport: newViewport
-
-            })
+        // create and add vector source layer
+        const initalFeaturesLayer = new VectorLayer({
+            source: new VectorSource()
         })
-    }
 
-   /**  constructor(){
-        this.state = {
-            latituded: latitude,
-            longituded: longitude,
-        };
-    }**/
+        // create map
+        const initialMap = new Map({
+            target: mapElement.current,
+            layers: [ 
+                new TileLayer({ 
+                   source: new OSM() 
+                   }) 
+                ],
+            view: new View({
+                projection: 'EPSG:3857',
+                center: [0, 0],
+                zoom: 2
+            }),
+            controls: []
+        })
 
+        // save map and vector layer references to state
+        setMap(initialMap)
+        setFeaturesLayer(initalFeaturesLayer)
 
-    
-    render(){
-        const longitud = this.state.viewport.longitude;
-        const latitud = this.state.viewport.latitude;
-        console.log(this.state.viewport.longitude);
-        console.log(this.state.viewport.latitude);
-        
-        return (
-       /**  {<Marker 
-              longitude = {}
-              latitude ={}>
-              <div className="Mi ubicacion"><span></span></div>
-           </Marker>};
-        </div> **/
-//<div className="flex items-center justify-center py-1  bg-blue-400"  style={{height: '100%' ,width: '100%', position:'absolute', top: '0', left: '0' }}>
-        <div className="items-center justify-center  bg-blue-400"  style={{height: '100%' ,width: '100%', position:'absolute', top: '0', left: '0' }}>
+    }, [])
+    return (
+        <div className="items-center justify-center  bg-blue-400" style={{ height: '100%', width: '100%', position: 'absolute', top: '0', left: '0' }}>
             {componenteNavVar('Inicio', 'MAPA', 'Cerrar sesión')}
             <div className="p-2 m-2 bg-gray-100 rounded-lg shadow ">
                 <section class="bg-dark w-full space-y-3 w-full py-4 rounded-3xl shadow-lg border flex flex-col">
-
-                    <ReactMapGL {...this.state.viewport} mapStyle='mapbox://styles/mapbox/streets-v11' onViewportChange={(viewport => this.setState({viewport}))}  mapboxAccessToken='pk.eyJ1IjoicGF0cmljaW9wYXJlZGVzIiwiYSI6ImNsMzd6bjlmdDBkaXEzZHEzeWowcjk5YXIifQ.WYVipj4sOnuBOkZbKaSEGw' style={{height: '400px'}} >
-                        <Marker
-                            longitude={longitud}
-                            latitude={latitud}>
-                            <div className="marker temporary-marker"><span></span></div>
-                        </Marker>
-                    
-                    </ReactMapGL>
+                    <div ref={mapElement} className="map-container" style={{ height: '400px' }}></div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
 
                         <table class="text-sm text-left text-white bg-blue-400 text-white w-full md:table-fixed " >
@@ -194,24 +157,6 @@ class Mapa1 extends Component{
             </div>
 
         </div>
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-            )
-    }
-
+    )
 }
-
-
-export default Mapa1;
+export default MapaInicial;
