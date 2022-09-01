@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "995394008356",
+    "project_id": "parqueadero-8ff72",
+    "storage_bucket": "parqueadero-8ff72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:995394008356:android:44b5f2a2fadf2d7b1c6fb1",
+        "android_client_info": {
+          "package_name": "com.newsotf.org.parqueadero_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "995394008356-o83dtisuvbh03dsd2dbljgpla78jiina.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWsHyo_1brB2UMlXH8WP4_YRP2ZzqDq20"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "995394008356-o83dtisuvbh03dsd2dbljgpla78jiina.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
