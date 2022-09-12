@@ -2,6 +2,8 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Todo: en windos "\\" en IOS  "//" 
+    
     "version": "0.2.0",
     "configurations": [
         
@@ -13,7 +15,7 @@
         },
         {
             "name": "my_app",
-            "cwd": "parqueadero_movil\\parqueadero_app",
+            "cwd": "parqueadero_movil//parqueadero_app",
             "request": "launch",
             "type": "dart",
             "program": "lib/main_production.dart",
@@ -23,8 +25,8 @@
             ]
         },
         {
-            "name": "my_app (profile mode)",
-            "cwd": "parqueadero_movil\\parqueadero_app",
+            "name": "my_app (development mode)",
+            "cwd": "parqueadero_movil//parqueadero_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "profile",
@@ -35,8 +37,8 @@
             ]
         },
         {
-            "name": "my_app (release mode)",
-            "cwd": "parqueadero_movil\\parqueadero_app",
+            "name": "my_app (release mode) development",
+            "cwd": "parqueadero_movil//parqueadero_app",
             "request": "launch",
             "type": "dart",
             "flutterMode": "release",

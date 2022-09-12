@@ -42,6 +42,7 @@ class DefaultFirebaseOptions {
           'DefaultFirebaseOptions have not been configured for linux - '
           'you can reconfigure this by running the FlutterFire CLI again.',
         );
+      // ignore: no_default_cases
       default:
         throw UnsupportedError(
           'DefaultFirebaseOptions are not supported for this platform.',
@@ -63,7 +64,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '995394008356',
     projectId: 'parqueadero-8ff72',
     storageBucket: 'parqueadero-8ff72.appspot.com',
-    iosClientId: '995394008356-a5pa877de4aq0v4utgp77lnpipn7alr5.apps.googleusercontent.com',
+    iosClientId:
+        '995394008356-a5pa877de4aq0v4utgp77lnpipn7alr5.apps.googleusercontent.com',
     iosBundleId: 'com.newsotf.org.parqueadero-app',
   );
 }
