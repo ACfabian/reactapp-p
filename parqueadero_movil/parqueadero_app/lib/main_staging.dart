@@ -5,8 +5,8 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'package:parqueadero_app/app/app.dart';
 import 'package:parqueadero_app/bootstrap.dart';
+import 'package:parqueadero_app/core/app/app.dart';
 
 void main() {
   bootstrap(() => const App());

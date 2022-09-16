@@ -6,7 +6,7 @@
 // https://opensource.org/licenses/MIT.
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:parqueadero_app/app/app.dart';
+import 'package:parqueadero_app/core/app/app.dart';
 import 'package:parqueadero_app/counter/counter.dart';
 
 void main() {
