@@ -9,8 +9,10 @@ environment:
 
 dependencies:
   auth_client: 
-     path: ../packages/auth_client
-  firebase_core: ^1.21.1
+     path: packages/auth_client
+  equatable: ^2.0.3
+
+  firebase_core: ^1.22.0
   flutter:
     sdk: flutter
   flutter_localizations:

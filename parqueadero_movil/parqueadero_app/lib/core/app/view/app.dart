@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:parqueadero_app/feature/auth/view/login.dart';
+import 'package:parqueadero_app/core/router/router.dart';
 import 'package:parqueadero_app/l10n/l10n.dart';
 
 class App extends StatelessWidget {
@@ -27,7 +27,7 @@ class App extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      home: const FormLogin(),
+      onGenerateRoute: Routes.get,
     );
   }
 }
